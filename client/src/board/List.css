@@ -1,0 +1,62 @@
+.table-container {
+  margin-bottom: 20px;
+  margin: 0 auto;
+  width: 70%;
+  height: 80vh;
+  position: relative;
+}
+
+.table {
+  margin: 0 auto;
+  margin-top: 150px;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+.hr-long {
+  border-top: 1px solid gray;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.th {
+  background-color: tomato;
+  color: white;
+  font-weight: bold;
+  padding: 50px;
+  text-align: center;
+}
+th:nth-child(1) {
+  width: 10%; /* 글 번호 구간 너비 */
+  white-space: nowrap;
+}
+
+th:nth-child(2) {
+  width: 60%; /* 제목 구간 너비 */
+}
+
+.tr {
+  border-bottom: 1px solid black; /* 각 행 아래에 선을 추가합니다. */
+}
+
+.td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.button-container {
+  position: absolute;
+  text-align: right;
+  bottom: 20px;
+  right: 20px;
+}
+
+.button {
+  background-color: darkseagreen;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
