@@ -20,4 +20,10 @@ router.get("/login/success", userController.loginsuccess);
 // 세션 로그인 구현
 router.get("/session", userController.session);
 
+//게시글 데베 저장
+router.post("/write12", userController.post);
+
+//저장된 데베글 가져오기
+router.get("/view/:id", userController.getPostById);
+
 module.exports = router;
