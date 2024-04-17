@@ -1,58 +1,61 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import NavigationBar from "../components/NavigationBar";
-import "./List.css"; // CSS 파일을 import 합니다.
+import axios from "axios";
+import styled from "styled-components";
 
-const List = ({ list }) => {
+const Table = styled.table`
+  border-top: 2px solid tomato;
+  width: 100%;
+`;
+
+const Tr = styled.tr`
+  height: 40px;
+`;
+
+const Td = styled.td`
+  border-bottom: 1px solid #ddd;
+`;
+
+const List = () => {
+  const [list, setList] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // 서버에서 게시글 목록 가져오는 요청
+    axios.get("http://localhost:5000/api/getPost")
+      .then(response => {
+        setList(response.data.posts);
+      })
+      .catch(error => {
+        console.error('Error fetching posts:', error);
+      });
+  }, []);
 
   return (
     <>
-      <div className="navbar">
-        <NavigationBar />
-      </div>
-
-      <div className="table-container">
-        {" "}
-        {/* .table-container 클래스를 추가합니다. */}
-        <table className="table">
-          {" "}
-          {/* .table 클래스를 추가합니다. */}
-          <thead>
-            <tr>
-              <th>글 번호</th> {/* <th>로 변경합니다. */}
-              <th>제목</th> {/* <th>로 변경합니다. */}
-              <th>작성자</th> {/* <th>로 변경합니다. */}
-              <th>날짜</th> {/* <th>로 변경합니다. */}
-            </tr>
-          </thead>
-        </table>
-        <hr className="hr-long" />
-        <table className="table">
-          <tbody>
-            {list.map((it, idx) => {
-              return (
-                <tr key={it.id}>
-                  <td>{idx + 1}</td> {/* <td>로 변경합니다. */}
-                  <td>
-                    <Link to={`/view/${it.id}`}>{it.subject}</Link>
-                  </td>{" "}
-                  {/* <td>로 변경합니다. */}
-                  <td>{it.name}</td> {/* <td>로 변경합니다. */}
-                  <td>{it.date}</td> {/* <td>로 변경합니다. */}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <div className="button-container">
-          {" "}
-          {/* .button-container 클래스를 추가합니다. */}
-          <button className="button" onClick={() => navigate("/write")}>
-            글작성
-          </button>{" "}
-          {/* .button 클래스를 추가합니다. */}
-        </div>
+      <Table>
+        <thead>
+          <Tr>
+            <Td>no</Td>
+            <Td>제목</Td>
+            <Td>글쓴이</Td>
+            <Td>날짜</Td>
+          </Tr>
+        </thead>
+        <tbody>
+          {list.map((item, idx) => (
+            <Tr key={item.id}>
+              <Td>{idx + 1}</Td>
+              <Td><Link to={`/view/${item.id}`}>{item.title}</Link></Td>
+              <Td>{item.author}</Td>
+              <Td>{item.date}</Td>
+            </Tr>
+          ))}
+        </tbody>
+      </Table>
+      <hr />
+      <div>
+        <button onClick={() => navigate('/write')}>글작성</button>
       </div>
     </>
   );

@@ -18,16 +18,18 @@ const View = () => {
             });
     }, [id]);
 
-    // const onDelete = async () => {
-    //     try {
-    //         // 서버에 삭제 요청 보내기
-    //         const response = await axios.delete(`http://localhost:5000/api/delete/${id}`);
-    //         // 삭제 성공시 리스트 페이지로 이동
-    //         navigate('/list');
-    //     } catch (error) {
-    //         console.error('Error deleting post:', error);
-    //     }
-    // };
+    const onDelete = async () => {
+        try {
+            // 서버에 DELETE 요청 보내기
+            await axios.delete(`http://localhost:5000/api/delete/${id}`);
+            // 삭제 성공시 리스트 페이지로 이동
+            navigate('/list');
+        } catch (error) {
+            console.error('Error deleting post:', error);
+        }
+    };
+
+    
 
     const onModify = () => {
         navigate(`/modify/${id}`);
@@ -40,8 +42,8 @@ const View = () => {
                     <h2>{post.title}</h2>
                     <p>작성자: {post.author}</p>
                     <p>{post.content}</p>
-                    {/* <button onClick={onDelete}>삭제</button> */}
                     <button onClick={onModify}>수정</button>
+                    <button onClick={onDelete}>삭제</button>
                 </div>
             ) : (
                 <p>Loading...</p>

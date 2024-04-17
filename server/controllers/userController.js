@@ -188,4 +188,52 @@ exports.logout = (req, res) => {
   
   };
 
+  exports.ModifyPost = (req, res) => {
+    const { id } = req.params;
+    const { title, author, content } = req.body;
   
+    const sql = "UPDATE posts SET title = ?, author = ?, content = ? WHERE id = ?";
+    db.query(sql, [title, author, content, id], (err, result) => {
+        if (err) {
+            console.error("Error updating post:", err);
+            res.status(500).json({ success: false, message: "포스트를 업데이트하는 중 오류가 발생했습니다." });
+            return;
+        }
+        res.status(200).json({ success: true, message: "포스트가 성공적으로 업데이트되었습니다." });
+    });
+  };
+
+  exports.deletePostById = (req, res) => {
+    const { id } = req.params;
+  
+    // 데이터베이스에서 해당 ID의 포스트를 삭제하는 쿼리
+    const sql = "DELETE FROM posts WHERE id = ?";
+  
+    // 쿼리 실행
+    db.query(sql, [id], (err, result) => {
+      if (err) {
+        console.error("Error deleting post:", err);
+        res.status(500).json({ success: false, message: "포스트를 삭제하는 중 오류가 발생했습니다." });
+        return;
+      }
+  
+      // 삭제 성공 시 클라이언트로 응답 전송
+      res.status(200).json({ success: true, message: "포스트가 성공적으로 삭제되었습니다." });
+    });
+  };
+  
+  exports.getPosts = (req, res) => {
+    // 데이터베이스에서 모든 게시글을 가져오는 쿼리
+    const sql = "SELECT id, title, author, DATE_FORMAT(created_at, '%Y-%m-%d') AS date FROM posts";
+  
+    // 쿼리 실행
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error("Error fetching posts:", err);
+            res.status(500).json({ success: false, message: "게시글을 가져오는 중 오류가 발생했습니다." });
+            return;
+        }
+        // 성공적으로 게시글을 가져왔을 때 클라이언트로 응답 전송
+        res.status(200).json({ success: true, posts: result });
+    });
+  };

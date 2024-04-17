@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
+const boardController = require("../controllers/boardController");
 
 // 회원가입 엔드포인트
 router.post("/signup", userController.signup);
@@ -21,9 +22,15 @@ router.get("/login/success", userController.loginsuccess);
 router.get("/session", userController.session);
 
 //게시글 데베 저장
-router.post("/write12", userController.post);
+router.post("/write12", boardController.post);
 
 //저장된 데베글 가져오기
-router.get("/view/:id", userController.getPostById);
+router.get("/view/:id", boardController.getPostById);
+
+router.put("/modify/:id", boardController.ModifyPost);
+
+router.delete("/delete/:id", boardController.deletePostById);
+
+router.get("/getPost", boardController.getPosts);
 
 module.exports = router;
