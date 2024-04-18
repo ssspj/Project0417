@@ -1,0 +1,118 @@
+.view-container {
+  margin-bottom: 20px;
+  margin: 0 auto;
+  width: 70%;
+  height: 70vh;
+  position: relative;
+  margin-top: 180px;
+  border: 1px solid grey; /* 테두리를 회색으로 설정합니다. */
+  border-radius: 20px; /* 테두리의 모서리를 둥글게 만듭니다. */
+}
+
+.view h2 {
+  margin: 32px;
+  font-size: 32px;
+  margin-bottom: 20px;
+  margin-right: 100px;
+}
+
+.author {
+  margin: 0 50px 0 50px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.date {
+  margin: 0 50px 0 50px;
+  font-size: 15px;
+  padding-bottom: 20px; /* 구분선과 내용 사이의 간격을 조절합니다. */
+}
+
+.content {
+  width: 85%;
+  margin: 0 auto;
+  padding: 20px;
+  border-top: 2px solid grey; /* 회색 구분선을 추가합니다. */
+}
+
+.view {
+  position: relative; /* 부모 요소를 상대적으로 위치시킵니다. */
+}
+
+.options-menu {
+  position: absolute; /* 자식 요소를 절대적으로 위치시킵니다. */
+  top: -10px;
+  right: 40px;
+  cursor: pointer;
+}
+
+.options-menu svg {
+  width: 30px; /* 아이콘의 너비를 조절합니다. */
+  height: 30px; /* 아이콘의 높이를 조절합니다. */
+  color: darkseagreen;
+}
+
+.options-popup {
+  position: absolute;
+  width: 100px;
+  top: calc(100% + 5px); /* 햄버거 버튼 아래에 위치하도록 조정 */
+  right: 0; /* 오른쪽 정렬 */
+  border: 3px solid gainsboro; /* 회색 테두리 설정 */
+  border-radius: 10px; /* 버튼을 둥글게 만듭니다. */
+}
+
+.options-popup button {
+  display: block;
+  width: 90px; /* 버튼 너비 */
+  margin: 0 auto; /* 위아래 여백 설정 */
+  padding: 10px 0; /* 상하 여백 조절 */
+  border: none;
+  background-color: white;
+  border-radius: 0px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.options-popup button + button {
+  border-top: 1px solid lightgray; /* 수정 버튼 위에 구분선 추가 */
+}
+
+.comments-container h3 {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 150px;
+  padding: 10px;
+  border-top: 2px solid grey; /* 회색 구분선을 추가합니다. */
+  border-bottom: 2px solid grey; /* 회색 구분선을 추가합니다. */
+}
+
+.comment-form {
+  display: flex; /* 자식 요소를 수평으로 배치합니다. */
+  align-items: flex-start; /* 수직 정렬을 시작점으로 설정합니다. */
+}
+
+.comment-form textarea {
+  flex: 1;
+  margin-left: 30px;
+  margin-top: 10px;
+  height: 40px; /* 원하는 높이로 설정 */
+  border: 2px solid darkseagreen; /* 테두리 두껍게 설정 */
+  border-radius: 10px; /* 둥글게 모양 주기 */
+  padding: 10px; /* 내부 여백 추가 */
+}
+.comment-button {
+  border-radius: 10px;
+  background-color: darkseagreen;
+  border: none;
+  width: 60px;
+  margin-left: 10px;
+  margin-top: 15px;
+  margin-right: 20px;
+  color: #f0f0f0;
+  height: 50px;
+  cursor: pointer;
+}
+
+.comment-form textarea:focus {
+  border: 2px solid green; /* 포커스를 받으면 테두리 색상을 초록색으로 변경합니다. */
+}

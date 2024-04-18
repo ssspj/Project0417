@@ -1,0 +1,73 @@
+.table-container {
+  margin-bottom: 20px;
+  margin: 0 auto;
+  width: 80%;
+  height: 80vh;
+  position: relative;
+}
+
+.table {
+  margin: 0 auto;
+  margin-top: 150px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th {
+  font-weight: bold;
+  font-size: 18px;
+  white-space: nowrap;
+  padding: 20px;
+}
+.table th:nth-child(1) {
+  width: 5%; /* 글 번호 구간 너비 */
+}
+
+.table th:nth-child(2) {
+  width: 55%; /* 제목 구간 너비 */
+}
+
+.table th:nth-child(3) {
+  width: 20%; /* 작성자 구간 너비 */
+}
+
+.table th:nth-child(4) {
+  width: 20%; /* 날짜 구간 너비 */
+}
+
+.table th {
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
+
+.table td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  padding: 20px;
+  white-space: nowrap;
+}
+
+.button-container {
+  position: absolute;
+  text-align: right;
+  bottom: 50px;
+  right: 50px;
+}
+
+.button {
+  background-color: darkseagreen;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.title {
+  cursor: pointer;
+}
+
+.pagination {
+  margin: 0 auto;
+}
