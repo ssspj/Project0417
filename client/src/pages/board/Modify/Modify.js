@@ -7,10 +7,10 @@ import "./Modify.css";
 const Modify = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [post, setPost] = useState(null); // 수정 필요: 이전에 입력한 제목과 내용을 저장할 상태 추가
+  const [post, setPost] = useState(null);
   const [inputs, setInputs] = useState({
-    title: "", // 수정 필요: 초기값을 빈 문자열로 설정
-    content: "", // 수정 필요: 초기값을 빈 문자열로 설정
+    title: "",
+    content: "",
   });
 
   useEffect(() => {
@@ -20,8 +20,7 @@ const Modify = () => {
           `http://localhost:5000/api/view/${id}`
         );
         const postData = response.data.post;
-        setPost(postData); // 이전에 입력한 제목과 내용을 상태에 저장
-        // 이전에 입력한 제목과 내용이 해당 입력칸에 입력되도록 설정
+        setPost(postData);
         setInputs({
           title: postData.title,
           content: postData.content,
@@ -44,16 +43,20 @@ const Modify = () => {
         return;
       }
 
-      const response = await axios.put(
-        `http://localhost:5000/api/modify/${id}`,
-        inputs
-      );
+      // 로그 추가: 함수가 호출되는지 확인
+      console.log("Modify button clicked");
 
-      if (!response.data.success) {
-        throw new Error("Failed to modify post");
-      }
+      await modifyPost(id, inputs);
 
-      navigate(`/view/${id}`);
+      // 로그 추가: 수정 완료 메시지 확인
+      console.log("수정 완료");
+
+      // 네비게이션 이동 전에 대상 경로 확인
+      const targetPath = `/view/${id}`;
+      console.log("Target path:", targetPath);
+
+      // 네비게이션 호출
+      navigate(targetPath, { replace: true });
     } catch (error) {
       console.error("Error modifying post:", error);
     }
@@ -65,6 +68,19 @@ const Modify = () => {
       ...inputs,
       [name]: value,
     });
+  };
+
+  const modifyPost = async (id, postData) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/api/modify/${id}`,
+        postData
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error modifying post:", error);
+      throw error;
+    }
   };
 
   return (
@@ -83,7 +99,7 @@ const Modify = () => {
                   className="input-text"
                   type="text"
                   name="title"
-                  value={inputs.title} // 수정 필요: 이전에 입력한 제목으로 설정
+                  value={inputs.title}
                   onChange={onChange}
                 />
               </li>
@@ -92,12 +108,12 @@ const Modify = () => {
                 <textarea
                   className="input-text"
                   name="content"
-                  value={inputs.content} // 수정 필요: 이전에 입력한 내용으로 설정
+                  value={inputs.content}
                   onChange={onChange}
                 />
               </li>
             </ul>
-            <button className="modifyButton" onClick={onModify}>
+            <button type="button" className="modifyButton" onClick={onModify}>
               수정
             </button>
           </form>

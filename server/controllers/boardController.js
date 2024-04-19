@@ -69,11 +69,10 @@ exports.getPostById = (req, res) => {
 
 exports.ModifyPost = (req, res) => {
   const { id } = req.params;
-  const { title, author, content } = req.body;
+  const { title, content } = req.body;
 
-  const sql =
-    "UPDATE posts SET title = ?, author = ?, content = ? WHERE id = ?";
-  db.query(sql, [title, author, content, id], (err, result) => {
+  const sql = "UPDATE posts SET title = ?, content = ? WHERE id = ?";
+  db.query(sql, [title, content, id], (err, result) => {
     if (err) {
       console.error("Error updating post:", err);
       res.status(500).json({
@@ -116,7 +115,7 @@ exports.deletePostById = (req, res) => {
 exports.getPosts = (req, res) => {
   // 데이터베이스에서 모든 게시글을 가져오는 쿼리
   const sql =
-    "SELECT id, title, author, DATE_FORMAT(created_at, '%Y-%m-%d') AS date FROM posts";
+    "SELECT id, title, author, DATE_FORMAT(created_at, '%Y-%m-%d') AS date FROM posts ORDER BY created_at DESC";
 
   // 쿼리 실행
   db.query(sql, (err, result) => {

@@ -8,6 +8,7 @@ import List from "./pages/board/List/List";
 import Modify from "./pages/board/Modify/Modify";
 import View from "./pages/board/View/View";
 import Write from "./pages/board/Write/Write";
+import Join from "./pages/Chat/Join/Join";
 import MyPage from "./pages/MyPage/MyPage";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/main" element={<Main />} />
         <Route path="/list" element={<List list={list} />} />
@@ -32,8 +34,7 @@ function App() {
           path="/write"
           element={<Write list={list} setList={setList} idRef={idRef} />}
         />
-
-        <Route path="/" element={<Login />} />
+        <Route path="/join" element={<Join />} />
         <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </Router>

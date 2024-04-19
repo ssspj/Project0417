@@ -31,13 +31,9 @@ const NavigationBar = () => {
 
   const handleLogout = async () => {
     try {
-      // 서버로 로그아웃 요청을 보냅니다.
-      await axios.post(
-        "http://localhost:5000/api/logout",
-        {},
-        { withCredentials: true }
-      );
-      // 로그아웃 성공 시 로그인 페이지로 이동합니다.
+      // 서버로 로그아웃 요청을 보내는 대신, 클라이언트 상태를 초기화하고 서버에서 세션을 삭제하도록 변경
+      setIsLogin(false);
+      setUser(null);
       navigate("/");
     } catch (error) {
       console.error("로그아웃에 실패하였습니다:", error);
