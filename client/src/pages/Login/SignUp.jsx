@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../styles/Login.css";
+import "./Login.css";
 
 function Signup() {
   // 회원가입 폼의 상태를 관리하기 위한 useState 훅을 사용합니다.
@@ -83,6 +83,7 @@ function Signup() {
         <form className="login_form" onSubmit={handleSubmit}>
           <div className="inputTag">
             <input
+              className="input-text"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -96,6 +97,7 @@ function Signup() {
 
           <div className="inputTag">
             <input
+              className="input-text"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -109,6 +111,7 @@ function Signup() {
 
           <div className="inputTag">
             <input
+              className="input-text"
               type="password"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
@@ -125,6 +128,7 @@ function Signup() {
 
           <div className="inputTag" onSubmit={handleSubmit}>
             <input
+              className="input-text"
               type="text"
               value={username}
               onChange={handleUsernameChange}

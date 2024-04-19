@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Write.css";
-import NavigationBar from "../components/NavigationBar";
+import "./Write.css"; // 수정된 파일명으로 변경
+import NavigationBar from "../../../components/NavigationBar";
 
 const Write = ({ list, setList, idRef }) => {
   const navigate = useNavigate();
@@ -31,14 +31,16 @@ const Write = ({ list, setList, idRef }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const time = new Date(); // 현재 시간 생성
-      const created_at = time.toISOString(); // 작성일을 ISO 포맷으로 변환하여 추가
       const response = await fetch("http://localhost:5000/api/write12", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title, author: username, content, created_at }),
+        body: JSON.stringify({
+          title,
+          author: username,
+          content,
+        }), // 서버에서 시간을 처리하므로 author와 created_at을 전송하지 않음
       });
 
       if (!response.ok) {
@@ -48,8 +50,8 @@ const Write = ({ list, setList, idRef }) => {
       const data = await response.json();
       console.log(data.message); // 서버로부터 받은 응답 메시지 출력
 
-      // 저장에 성공했을 때만 리스트에 추가
-      setList([...list, { title, author: username, content, created_at }]);
+      // 저장에 성공했을 때 리스트를 업데이트
+      setList([...list, { title, author: username, content }]);
 
       idRef.current = idRef.current + 1;
 
@@ -71,6 +73,7 @@ const Write = ({ list, setList, idRef }) => {
             <li>
               <label htmlFor="subject">제목</label>
               <input
+                className="input-text"
                 type="text"
                 id="subject"
                 value={title}
@@ -81,6 +84,7 @@ const Write = ({ list, setList, idRef }) => {
             <li>
               <label htmlFor="content">내용</label>
               <textarea
+                className="input-text"
                 type="text"
                 id="content"
                 value={content}

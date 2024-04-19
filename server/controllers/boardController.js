@@ -1,15 +1,20 @@
 const db = require("../database/db.js"); // db.js 파일의 경로에 맞게 수정
 
 exports.post = (req, res) => {
-  const { title, author, content, created_at } = req.body;
+  const { title, author, content } = req.body;
 
-  if (!title || !author || !content || !created_at) {
+  if (!title || !author || !content) {
     return res.status(400).json({
       success: false,
       message: "제목, 작성자, 내용을 모두 제공해야 합니다.",
     });
   }
 
+  // 현재 시간을 UTC로 변환하여 저장
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
+  const koreaTimeDiff = 9 * 60 * 60 * 1000;
+  const created_at = new Date(utc + koreaTimeDiff);
   // 데이터베이스에 텍스트 정보 저장
   const sql =
     "INSERT INTO posts (title, author, content, created_at) VALUES (?, ?, ?, ?)";

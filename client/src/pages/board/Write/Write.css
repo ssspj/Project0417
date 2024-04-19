@@ -1,35 +1,51 @@
-.modify-container {
-  margin-bottom: 20px;
+.write-container {
+  margin-bottom: 10px;
   margin: 0 auto;
   width: 70%;
-  height: 70vh;
+  height: 80vh;
   position: relative;
-  margin-top: 180px;
+  margin-top: 140px;
   border: 1px solid #ccc; /* 테두리를 회색으로 설정합니다. */
-  border-radius: 5px; /* 테두리의 모서리를 둥글게 만듭니다. */
+  border-radius: 20px; /* 테두리의 모서리를 둥글게 만듭니다. */
+}
+.writeButton {
+  background-color: darkseagreen;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+  font-family: "NPS";
+  position: fixed;
+  position: absolute;
+  bottom: 50px;
+  right: 100px;
 }
 
-.modify-container h2 {
-  margin: 40px;
-  font-size: 40px;
-  margin-bottom: 40px;
+.write-container h2 {
+  margin: 50px;
+  font-size: 32px;
 }
 
-.modify-container ul {
+.write-container ul {
   list-style: none; /* 리스트의 점 표시 제거 */
 }
 
-.modify-container ul li {
+.write-container ul li {
+  margin-left: 10px;
   margin-bottom: 40px; /* 각 입력 요소 사이의 간격 조절 */
 }
 
-.modify-container ul li label {
+.write-container ul li label {
   display: block; /* 라벨을 블록 요소로 표시하여 한 줄에 하나씩 표시되도록 함 */
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-.modify-container input[type="text"] {
+/* 기존 스타일 유지하고 제목 입력란의 너비를 늘리는 스타일 추가 */
+.write-container input[type="text"]#subject {
   width: 90%; /* 혹은 적절한 너비값 설정 */
   height: 40px;
   border: 2px solid #ccc; /* 테두리 두껍게 설정 */
@@ -37,7 +53,7 @@
   padding: 10px; /* 내부 여백 추가 */
 }
 /* 내용 입력란의 크기를 더 큰 직사각형으로 설정 */
-.modify-container textarea {
+.write-container textarea {
   width: 90%; /* 입력란의 너비를 100%로 설정하여 부모 요소에 맞게 설정 */
   height: 250px; /* 원하는 높이로 설정 */
   border: 2px solid #ccc; /* 테두리 두껍게 설정 */
@@ -47,16 +63,7 @@
   overflow-y: auto; /* 세로 방향으로만 스크롤바를 표시합니다. */
 }
 
-.modifyButton {
-  background-color: darkseagreen;
-  color: white;
-  border: none;
-  padding: 10px 20px;
+.input-text {
   font-size: 24px;
-  cursor: pointer;
-  border-radius: 20px;
-  transition: background-color 0.3s ease;
-  position: absolute; /* 절대 위치 설정 */
-  bottom: 50px; /* 하단 여백 설정 */
-  right: 50px; /* 우측 여백 설정 */
+  font-family: "NPS";
 }

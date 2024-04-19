@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import "../styles/NavigationBar.css";
+import "./NavigationBar.css";
 
 const NavigationBar = () => {
   const [isFirstRender, setIsFirstRender] = useState(true); // 첫 번째 렌더링 여부를 useState로 관리
@@ -73,7 +73,8 @@ const NavigationBar = () => {
     if (
       location.pathname.includes("/list") ||
       location.pathname.includes("/view/") ||
-      location.pathname.includes("/modify/")
+      location.pathname.includes("/modify/") ||
+      location.pathname.includes("/write")
     ) {
       setActiveMenu("board");
     } else if (location.pathname.includes("/join")) {

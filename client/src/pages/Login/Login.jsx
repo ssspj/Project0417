@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios"; // 로그인 요청을 보내기 위해 axios를 사용합니다.
 import { Link, useNavigate } from "react-router-dom"; // useHistory를 import
-import "../styles/Login.css";
+import "./Login.css";
 
 function Login() {
   // 로그인 폼의 상태를 관리하기 위한 useState 훅을 사용합니다.
@@ -15,10 +15,14 @@ function Login() {
 
     try {
       // 사용자의 입력값을 서버로 전송하여 로그인을 시도합니다.
-      const response = await axios.post("http://localhost:5000/api/login", {
-        email,
-        password,
-      }, { withCredentials: true });
+      const response = await axios.post(
+        "http://localhost:5000/api/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
 
       if (response.data.success) {
         console.log("로그인 성공");
@@ -40,6 +44,7 @@ function Login() {
         <form className="login_form" onSubmit={handleSubmit}>
           <div className="inputTag">
             <input
+              className="input-text"
               type="text"
               value={email}
               placeholder="email"
@@ -54,6 +59,7 @@ function Login() {
 
           <div className="inputTag">
             <input
+              className="input-text"
               type="password"
               value={password}
               placeholder="password"

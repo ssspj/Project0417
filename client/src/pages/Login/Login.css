@@ -40,9 +40,10 @@
 .login_main .inputTag input {
   height: 40px;
   width: 100%;
+  margin-bottom: 10px;
   border-radius: 10px;
   background: #f3f3f3;
-  padding: 29px 0px 10px 15px;
+  padding: 30px 0px 10px 15px;
   outline: none;
   border: none;
   font-size: 16px;
@@ -52,6 +53,7 @@
 input[type="password"] {
   font: small-caption;
   font-size: 16px;
+  font-family: "NPS";
 }
 
 .login_main .inputTag input:focus-within {
@@ -104,4 +106,8 @@ input[type="password"] {
   color: white;
   padding: 10px;
   border-radius: 5px;
+}
+
+.input-text {
+  font-size: 16px;
 }

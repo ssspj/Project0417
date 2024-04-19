@@ -1,5 +1,5 @@
 import React from "react";
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../../components/NavigationBar";
 import { Link, NavLink } from "react-router-dom";
 
 const MyPage = () => {
