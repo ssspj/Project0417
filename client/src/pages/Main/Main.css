@@ -1,0 +1,42 @@
+.mainlist-container {
+  margin-top: 140px;
+  width: 60%;
+  height: 70%;
+}
+
+.mainlist-container h2 {
+  margin-left: 50px;
+  white-space: nowrap;
+}
+
+.mainTable {
+  margin: 20px;
+  border: 3px solid darkseagreen;
+  border-radius: 20px;
+}
+
+.mainTable th {
+  font-weight: bold;
+  font-size: 18px;
+  white-space: nowrap;
+  padding: 20px;
+  border-bottom: 2px solid darkseagreen;
+}
+.mainTable th:nth-child(1) {
+  width: 50%; /* 글 번호 구간 너비 */
+}
+
+.mainTable th:nth-child(2) {
+  width: 25%; /* 제목 구간 너비 */
+}
+
+.mainTable th:nth-child(3) {
+  width: 25%; /* 작성자 구간 너비 */
+}
+
+.mainTable td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  padding: 20px;
+  white-space: nowrap;
+}

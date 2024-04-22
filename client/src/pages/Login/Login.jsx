@@ -37,6 +37,10 @@ function Login() {
     }
   };
 
+  const handlePasswordResetClick = () => {
+    navigate("/usercheck"); // 비밀번호 찾기 페이지로 이동
+  };
+
   return (
     <div className="login">
       <div className="login_main">
@@ -70,6 +74,14 @@ function Login() {
               <span style={{ paddingLeft: "5px", color: "red" }}>*</span>
             </label>
           </div>
+          <p className="link_box" style={{ textAlign: "right" }}>
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={handlePasswordResetClick}
+            >
+              비밀번호 찾기
+            </span>
+          </p>
           <div style={{ marginTop: "26px" }} />
           <button id="login_btn" type="submit">
             로그인

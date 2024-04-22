@@ -128,8 +128,7 @@ const NavigationBar = () => {
           </div>
         ) : (
           <div>
-            <p>로그인이 필요합니다.</p>
-            <Link to="/">로그인 페이지로 이동</Link>
+            <Link to="/">로그인이 필요합니다</Link>
           </div>
         )}
       </nav>

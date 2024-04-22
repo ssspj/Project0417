@@ -11,7 +11,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(true); // 비밀번호 일치 여부 상태
-  const [error, setError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   // 회원가입 폼을 제출할 때 실행되는 함수입니다.
   const handleSubmit = async (e) => {
@@ -39,7 +39,7 @@ function Signup() {
       alert("회원가입에 성공했습니다");
     } catch (error) {
       // 회원가입에 실패하면 에러 메시지를 설정합니다.
-      setError("Failed to sign up:.", error);
+      console.log("Failed to sign up:.", error);
     }
   };
 
@@ -53,6 +53,22 @@ function Signup() {
       setPasswordMatch(true); // 비밀번호 일치
     } else {
       setPasswordMatch(false); // 비밀번호 불일치
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const passwordValue = e.target.value;
+    setPassword(passwordValue);
+    const passwordRegex =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{5,}$/;
+    if (passwordValue === "") {
+      setPasswordError("");
+    } else if (!passwordRegex.test(passwordValue)) {
+      setPasswordError(
+        "비밀번호는 5자 이상이어야 하며 영문, 숫자, 특수문자를 포함해야 합니다."
+      );
+    } else {
+      setPasswordError("");
     }
   };
 
@@ -100,13 +116,17 @@ function Signup() {
               className="input-text"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
             />
             <label htmlFor="input_pw">
               비밀번호 <span style={{ color: "#EF4565" }}>*</span>
             </label>
           </div>
-
+          {passwordError && (
+            <div className="errorMSG">
+              <small style={{ color: "red" }}>{passwordError}</small>
+            </div>
+          )}
           <div style={{ marginTop: "26px" }} />
 
           <div className="inputTag">

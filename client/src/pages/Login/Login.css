@@ -5,6 +5,13 @@
   vertical-align: middle;
   height: 100vh; /* 화면 전체 높이 차지 */
 }
+.find_pw {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -150px;
+  height: 100vh; /* 화면 전체 높이 차지 */
+}
 .signup {
   display: flex;
   justify-content: center;
@@ -92,7 +99,6 @@ input[type="password"] {
   color: #f0f0f0;
   height: 57px;
   font-weight: 700;
-  margin-top: 10px;
   cursor: pointer;
 }
 

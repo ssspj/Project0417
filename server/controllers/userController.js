@@ -144,3 +144,78 @@ exports.session = (req, res) => {
     res.status(403).json("세션에 유저 정보가 없습니다.");
   }
 };
+
+// 사용자 존재 여부 확인 로직
+exports.checkUser = (req, res) => {
+  const { username, email } = req.body;
+
+  const userExistsQuery =
+    "SELECT * FROM usertable WHERE username = ? AND email = ?";
+  db.query(userExistsQuery, [username, email], (err, result) => {
+    if (err) {
+      console.error("Error querying database:", err);
+      return res
+        .status(500)
+        .json({ success: false, message: "Internal Server Error" });
+    }
+
+    if (result.length > 0) {
+      // 해당 사용자가 존재함
+      res.status(200).json({ exists: true });
+    } else {
+      // 해당 사용자가 존재하지 않음
+      res.status(200).json({ exists: false });
+    }
+  });
+};
+
+// 비밀번호 찾기 로직
+exports.resetPassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  try {
+    // 사용자가 존재하는지 확인
+    const userExistsQuery = "SELECT * FROM usertable WHERE email = ?";
+    db.query(userExistsQuery, [email], async (err, result) => {
+      if (err) {
+        console.error("Error querying database:", err);
+        return res
+          .status(500)
+          .json({ success: false, message: "Internal Server Error" });
+      }
+
+      if (result.length === 0) {
+        // 사용자가 존재하지 않음
+        return res
+          .status(404)
+          .json({ success: false, message: "User not found" });
+      }
+
+      // 비밀번호 해싱
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+      // 데이터베이스에서 비밀번호 업데이트
+      const updatePasswordQuery =
+        "UPDATE usertable SET password = ? WHERE email = ?";
+      db.query(
+        updatePasswordQuery,
+        [hashedPassword, email],
+        (updateErr, updateResult) => {
+          if (updateErr) {
+            console.error("Error updating password in database:", updateErr);
+            return res
+              .status(500)
+              .json({ success: false, message: "Internal Server Error" });
+          }
+
+          res
+            .status(200)
+            .json({ success: true, message: "Password reset successfully" });
+        }
+      );
+    });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};

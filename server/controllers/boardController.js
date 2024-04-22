@@ -131,3 +131,23 @@ exports.getPosts = (req, res) => {
     res.status(200).json({ success: true, posts: result });
   });
 };
+
+exports.getLatestPosts = (req, res) => {
+  // 데이터베이스에서 최신 게시글 5개만 가져오는 쿼리
+  const sql =
+    "SELECT id, title, author, DATE_FORMAT(created_at, '%Y-%m-%d') AS date FROM posts ORDER BY created_at DESC LIMIT 5";
+
+  // 쿼리 실행
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error("Error fetching latest posts:", err);
+      res.status(500).json({
+        success: false,
+        message: "최신 게시글을 가져오는 중 오류가 발생했습니다.",
+      });
+      return;
+    }
+    // 성공적으로 최신 게시글을 가져왔을 때 클라이언트로 응답 전송
+    res.status(200).json({ success: true, latestPosts: result });
+  });
+};

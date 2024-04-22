@@ -1,21 +1,21 @@
-import io from "socket.io-client";
-import { useState } from "react";
+//import io from "socket.io-client";
+//import { useState } from "react";
 
 import NavigationBar from "../../../components/NavigationBar";
 
-const socket = io.connect("http://localhost:3000");
+//const socket = io.connect("http://localhost:3000");
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
-  const [showChat, setShowChat] = useState(false);
+  //   const [username, setUsername] = useState("");
+  //   const [room, setRoom] = useState("");
+  //   const [showChat, setShowChat] = useState(false);
 
-  const joinRoom = () => {
-    if (username !== "" && room !== "") {
-      socket.emit("join_room", room);
-      setShowChat(true);
-    }
-  };
+  //   const joinRoom = () => {
+  //     if (username !== "" && room !== "") {
+  //       // socket.emit("join_room", room);
+  //       setShowChat(true);
+  //     }
+  //   };
 
   return (
     <div className="navbar">
