@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 const boardController = require("../controllers/boardController");
+const commentContrller = require("../controllers/commentController");
 
 // 회원가입 엔드포인트
 router.post("/signup", userController.signup);
@@ -44,5 +45,13 @@ router.get("/getPost", boardController.getPosts);
 
 // 최신 게시글 가져오기
 router.get("/getLatestPosts", boardController.getLatestPosts);
+
+router.post("/commentPost", commentContrller.commentPost);
+
+router.get("/commentGet/:id", commentContrller.commentGet);
+
+router.post("/recommentPost", commentContrller.recommentPost);
+
+router.get("/recommentGet/:id", commentContrller.recommentGet);
 
 module.exports = router;
